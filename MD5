@@ -1,0 +1,11 @@
+487f0ae84344abf04381724fb94e769c *DESCRIPTION
+b5a1915b187089fd8be8f677ec0ef566 *NAMESPACE
+2bdcf81097ca4921d2525358062c6554 *R/ODMeansSampleData.R
+711287e684cab094f8042036f80ed236 *R/dinamic_clusters.R
+c5afbe24bf8fddda2422875578a32b50 *R/hierarchical_clusters.R
+1d4dbd37aad7238712ecc4b015a478cd *R/od_means.R
+030984d400fb504b016d21225c170f5d *data/ODMeansSampleData.rda
+aa62336aa553fd7edd740a7ec3171d7d *man/ODMeansSampleData.Rd
+861d5030de716f585f3b3a0fe54f8932 *man/dinamic_clusters.Rd
+417fb9bfd9a0cfaea62191fbb4949579 *man/hierarchical_clusters.Rd
+fde5500745edd12ee06bab5162d5b695 *man/od_means.Rd
