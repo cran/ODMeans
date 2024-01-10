@@ -1,8 +1,8 @@
 #' Origin-Destination points
 #'
-#' A dataset containing 1700 Origin-Destination points
+#' A synthetic data frame containing 1700 Origin-Destination points.
 #'
-#' @format A data frame with 10000 rows and 4 variables:
+#' @format A data frame with 10000 rows and 5 variables:
 #' \describe{
 #'   \item{OriginLatitude}{Consists of the origin latitude dimension}
 #'   \item{OriginLongitude}{Consists of the origin longitude dimension}
@@ -12,4 +12,5 @@
 #'   ...
 #' }
 #' @source Synthetic data
+#' @usage data(ODMeansSampleData)
 "ODMeansSampleData"

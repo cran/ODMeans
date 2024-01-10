@@ -1,27 +1,18 @@
-#' Dinamic Clusters Function
+#' First Hierarchy Function
 #'
 #' @param data A data frame with four columns:\cr
 #' Initial Latitude | Initial Longitude | Final Latitude | Final Longitude
-#' @param numK Initial number of clusters in the first call of K-Means.
-#' @param limitsSeparation Range to determine if a drastic change has happened between a cluster and its separation.
-#' A bigger value makes more difficult to separate a cluster.
-#' @param maxDist Maximum distance to join two points. This is based on the euclidean distance.
-#' @return Dinamic Clusters returns an object similar of class "kmeans". It is a list with at least the following components:
+#' @param numK Initial number of clusters in the first call of k-means in the global hierarchy.
+#' @param limitsSeparation Within cluster distance threshold to determine if a global cluster must be separated into two new clusters.
+#' @param maxDist Meter distance threshold used to re-estimate centroids in global hierarchy.
 #'
-#'cluster A vector of integers (from 1:k) indicating the cluster to which each point is allocated.
-#'centers A matrix of cluster centres.
-#'totss The total sum of squares.
-#'withinss Vector of within-cluster sum of squares, one component per cluster.
-#'tot.withinss Total within-cluster sum of squares, i.e. sum(withinss).
-#'betweenss The between-cluster sum of squares, i.e. totss-tot.withinss.
-#'size The number of points in each cluster.
-#'level_hierarchy Corresponds of the hierarchy level of the cluster, can be "Global" or "Local"
+#' @return Returns an S3 class object similar to kmeans S3 Class, with eight properties.
 #' @export
 #'
 #' @examples
-#' data(ODMeansSampleData)
-#' dinamic_clusters(ODMeansSampleData, 5, 200, 2500)
-dinamic_clusters <- function(data, numK, limitsSeparation, maxDist) {
+#' data(ODMeansTaxiData)
+#' first_hierarchy_data = first_hierarchy(ODMeansTaxiData, 10, 300, 1000)
+first_hierarchy <- function(data, numK, limitsSeparation, maxDist) {
 
   #ejemplo sintetico, synthetic_data
 
@@ -130,5 +121,6 @@ dinamic_clusters <- function(data, numK, limitsSeparation, maxDist) {
                               betweenss=(totss-tot.withinss),
                               size=clusteredData$size,
                               level_hierarchy = rep("Global",nrow(clusteredData$centers))))
+  class(finalCluster) <- "ODMeans"
   return(finalCluster)
 }

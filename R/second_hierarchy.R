@@ -1,26 +1,21 @@
-#' Hierarchical Clusters
+#' Second Hierarchy Clusters
 #'
 #' @param data A data frame with four columns:\cr
 #' Initial Latitude | Initial Longitude | Final Latitude | Final Longitude
-#' @param Kcluster An ODMeans structure, result of function dinamic_clusters.
-#' @param distHierarchical Maximum distance to create a new hierarchy per cluster.
+#' @param Kcluster An ODMeans structure, result of function first_hierarchy.
+#' @param distHierarchical Meter distance threshold between origin and destination to generate new local clusters from a first layer cluster.
+#' @param numKLocal Initial number of clusters in the first call of k-means in the local hierarchy.
+#' @param limitSeparationLocal Within cluster distance threshold to determine if a local cluster must be separated into two new clusters.
+#' @param maxDistLocal Meter distance threshold used to re-estimate centroids in local hierarchy.
 #'
-#' @return Hierarchical Clusters returns an object similar of class "kmeans". It is a list with at least the following components:
-#'
-#'cluster A vector of integers (from 1:k) indicating the cluster to which each point is allocated.
-#'centers A matrix of cluster centres.
-#'totss The total sum of squares.
-#'withinss Vector of within-cluster sum of squares, one component per cluster.
-#'tot.withinss Total within-cluster sum of squares, i.e. sum(withinss).
-#'betweenss The between-cluster sum of squares, i.e. totss-tot.withinss.
-#'size The number of points in each cluster.
-#'level_hierarchy Corresponds of the hierarchy level of the cluster, can be "Global" or "Local"
+#' @return Returns an S3 class object similar to kmeans S3 Class, with eight properties.
 #' @export
 #'
 #' @examples
-#' data(ODMeansSampleData)
-#' hierarchical_clusters(ODMeansSampleData, dinamic_clusters(ODMeansSampleData, 5, 200, 2500), 500)
-hierarchical_clusters <- function(data,Kcluster,distHierarchical) {
+#' data(ODMeansTaxiData)
+#' first_hierarchy_data = first_hierarchy(ODMeansTaxiData, 10, 500, 1000)
+#' second_hierarchy_data = second_hierarchy(ODMeansTaxiData, first_hierarchy_data, 2200, 3, 50, 100)
+second_hierarchy <- function(data,Kcluster,distHierarchical,numKLocal,limitSeparationLocal,maxDistLocal) {
   #Structure to return
   finalCluster=Kcluster
 
@@ -42,7 +37,7 @@ hierarchical_clusters <- function(data,Kcluster,distHierarchical) {
     if (distOD[i]<distHierarchical){
       tempData=data[Kcluster$cluster==i,]
       #Creating the subcluster
-      newSubCluster=dinamic_clusters(tempData,3,5,100)
+      newSubCluster=first_hierarchy(tempData,numKLocal,limitSeparationLocal,maxDistLocal) #  3,5,100
 
       #Adding the subcluster to the new component finalCluster
       #It maps the previous points with the new points
@@ -83,6 +78,8 @@ hierarchical_clusters <- function(data,Kcluster,distHierarchical) {
   finalCluster$tot.withinss = tot.withinss
   #Betweeness
   finalCluster$betweenss=(totss-tot.withinss)
+
+  class(finalCluster) <- "ODMeans"
 
   return(finalCluster)
 }
