@@ -12,7 +12,8 @@ odmeans(
   distHierarchical,
   numKLocal,
   limitSeparationLocal,
-  maxDistLocal
+  maxDistLocal,
+  kmeans_pp = FALSE
 )
 }
 \arguments{
@@ -32,6 +33,8 @@ Initial Latitude | Initial Longitude | Final Latitude | Final Longitude}
 \item{limitSeparationLocal}{Within cluster distance threshold to determine if a local cluster must be separated into two new clusters.}
 
 \item{maxDistLocal}{Meter distance threshold used to re-estimate centroids in local hierarchy.}
+
+\item{kmeans_pp}{Boolean value, if TRUE it initialize centroids using kmeans++.}
 }
 \value{
 Returns an S3 class object similar to kmeans S3 Class, with eight properties.

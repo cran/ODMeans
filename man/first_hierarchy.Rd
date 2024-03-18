@@ -4,7 +4,7 @@
 \alias{first_hierarchy}
 \title{First Hierarchy Function}
 \usage{
-first_hierarchy(data, numK, limitsSeparation, maxDist)
+first_hierarchy(data, numK, limitsSeparation, maxDist, kmeans_pp = FALSE)
 }
 \arguments{
 \item{data}{A data frame with four columns:\cr
@@ -15,6 +15,8 @@ Initial Latitude | Initial Longitude | Final Latitude | Final Longitude}
 \item{limitsSeparation}{Within cluster distance threshold to determine if a global cluster must be separated into two new clusters.}
 
 \item{maxDist}{Meter distance threshold used to re-estimate centroids in global hierarchy.}
+
+\item{kmeans_pp}{Boolean value, if TRUE it initialize centroids using kmeans++.}
 }
 \value{
 Returns an S3 class object similar to kmeans S3 Class, with eight properties.

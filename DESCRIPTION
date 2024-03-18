@@ -1,7 +1,7 @@
 Package: ODMeans
 Type: Package
 Title: OD-Means: k-Means for Origin-Destination
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: c(
     person("Sebastian","Moreno",role = c("aut", "cre"),
            email = "sebastian.moreno.araya@gmail.com"),
@@ -18,16 +18,16 @@ Description: OD-means is a hierarchical adaptive k-means algorithm based on orig
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: false
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Imports: geosphere, ggplot2, stats, ggmap, ggrepel
 Collate: 'ODMeansSampleData.R' 'ODMeansTaxiData.R' 'first_hierarchy.R'
         'second_hierarchy.R' 'odmeans.R' 'odmeans_graph.R'
 Depends: R (>= 3.5.0)
 NeedsCompilation: no
-Packaged: 2024-01-10 20:58:56 UTC; Cris
+Packaged: 2024-03-18 21:55:00 UTC; Cris
 Author: Sebastian Moreno [aut, cre],
   Cristobal Heredia [aut],
   Wilfredo Yushimito [ths],
   Gonzalo Huerta [ths]
 Repository: CRAN
-Date/Publication: 2024-01-10 21:23:19 UTC
+Date/Publication: 2024-03-18 22:20:07 UTC

@@ -1,9 +1,9 @@
-5b8d9dfd5a93e4a395d99ac5e217f942 *DESCRIPTION
+d4773aba4bfac6fa66025656e277050e *DESCRIPTION
 521c95cc42af62a4a26796e1330b7294 *NAMESPACE
 7466024944002043610c6375e891b776 *R/ODMeansSampleData.R
 a8f2097123535b62e70dd8b47cbf6202 *R/ODMeansTaxiData.R
-0ab39e58aadff214c0c5c48d36ed5876 *R/first_hierarchy.R
-7cab241a7024030b6dbcbb70252b2e0e *R/odmeans.R
+cf8b209cf21792ae4cdcdb37bffb4c6d *R/first_hierarchy.R
+fe58e91a67fec291530af195df64c509 *R/odmeans.R
 da7eeb89c3d1c3cde1b2e6e22953ef6e *R/odmeans_graph.R
 3213fe0bd0dd6a08bbea7d49542ecac9 *R/second_hierarchy.R
 030984d400fb504b016d21225c170f5d *data/ODMeansSampleData.rda
@@ -11,7 +11,7 @@ da7eeb89c3d1c3cde1b2e6e22953ef6e *R/odmeans_graph.R
 31ed596e88f589f8ba9b7e66c1c9c538 *data/datalist
 af20c9c291582477eada005c42ceebdd *man/ODMeansSampleData.Rd
 d1e4a5fe32a7fb1f2deb63b8df24a799 *man/ODMeansTaxiData.Rd
-8fb3f50be40e10b3bd84d4b2cc2054ff *man/first_hierarchy.Rd
-c82876bae64b5958845ec6e18718902e *man/odmeans.Rd
+508a35201a8ee39d70e310df26c749df *man/first_hierarchy.Rd
+fc3763080006d293ac04d609d4c5eaf1 *man/odmeans.Rd
 3760e2a71e008837ea59b75f48fa069f *man/odmeans_graph.Rd
 783070b652f934bd734264f13bb13860 *man/second_hierarchy.Rd

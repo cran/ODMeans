@@ -5,6 +5,7 @@
 #' @param numK Initial number of clusters in the first call of k-means in the global hierarchy.
 #' @param limitsSeparation Within cluster distance threshold to determine if a global cluster must be separated into two new clusters.
 #' @param maxDist Meter distance threshold used to re-estimate centroids in global hierarchy.
+#' @param kmeans_pp Boolean value, if TRUE it initialize centroids using kmeans++.
 #'
 #' @return Returns an S3 class object similar to kmeans S3 Class, with eight properties.
 #' @export
@@ -12,7 +13,7 @@
 #' @examples
 #' data(ODMeansTaxiData)
 #' first_hierarchy_data = first_hierarchy(ODMeansTaxiData, 10, 300, 1000)
-first_hierarchy <- function(data, numK, limitsSeparation, maxDist) {
+first_hierarchy <- function(data, numK, limitsSeparation, maxDist, kmeans_pp = FALSE) {
 
   #ejemplo sintetico, synthetic_data
 
@@ -29,6 +30,10 @@ first_hierarchy <- function(data, numK, limitsSeparation, maxDist) {
 
   #Iterative process to determine optimal number of clusters based on WithinClusterDistance.
   odDataframe=data[,c(1:4)]
+  # If kmeans++ is True, initialize centroids using kmeans++
+  if (kmeans_pp == TRUE)
+    {numK = kmeans_pp(odDataframe, numK)} # numK is a dataframe of centroids
+
   checkClusters=T
   while(checkClusters){
     checkClusters=F
@@ -123,4 +128,27 @@ first_hierarchy <- function(data, numK, limitsSeparation, maxDist) {
                               level_hierarchy = rep("Global",nrow(clusteredData$centers))))
   class(finalCluster) <- "ODMeans"
   return(finalCluster)
+}
+
+kmeans_pp <- function(data, k) {
+  # Select the first centroid randomly
+  centroids <- data[sample(nrow(data), 1), ]
+
+  # Select remaining centroids
+  for (i in 2:k) {
+    print(paste(i, "/", k))
+    # Calculate squared distances from each point to nearest centroid
+    distances <- apply(data, 1, function(x) min(stats::dist(rbind(x, centroids))^2))
+
+    # Calculate probability weights
+    weights <- distances / sum(distances)
+
+    # Choose next centroid using weighted probability
+    next_centroid_index <- sample(1:nrow(data), 1, prob = weights)
+
+    # Add next centroid to list
+    centroids <- rbind(centroids, data[next_centroid_index, ])
+  }
+
+  return(centroids)
 }
